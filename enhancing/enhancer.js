@@ -4,17 +4,41 @@ module.exports = {
   repair,
   get,
 };
-
 function succeed(item) {
-  return { ...item };
+  let newItem = { ...item };
+  if (item.enhancement === 20) {
+    return newItem;
+  } else {
+    newItem.enhancement++;
+    return newItem;
+  }
 }
 
 function fail(item) {
-  return { ...item };
+  let newItem = { ...item };
+  if (item.enhancement < 15) {
+    newItem.durability -= 5;
+    if (newItem.durability < 0) {
+      newItem.durability = 0;
+    }
+  } else if (item.enhancement > 15 || item.enhancement < 16) {
+    newItem.durability -= 10;
+    if (newItem.durability < 0) {
+      newItem.durability = 0;
+    }
+    if (item.enhancement > 16) {
+      newItem.enhancement--;
+    }
+  }
+  return newItem;
 }
 
 function repair(item) {
-  return { ...item };
+  const newItem = {
+    ...item,
+    durability: 100,
+  };
+  return newItem;
 }
 
 function get(item) {
