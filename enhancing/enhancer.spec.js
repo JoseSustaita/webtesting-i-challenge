@@ -40,7 +40,7 @@ describe("item enhancer unit tests", () => {
     expect(enhancer.repair(test_items[4]).durability).toBe(100);
   });
 
-  //Echancement succeeds test
+  //Enhancement Succeeds test
   it("succeeds on enhancement", () => {
     let newItem = enhancer.succeed(test_items[0]);
     expect(newItem.durability).toBe(10);
@@ -51,5 +51,24 @@ describe("item enhancer unit tests", () => {
     newItem = enhancer.succeed(test_items[4]);
     expect(newItem.durability).toBe(100);
     expect(newItem.enhancement).toBe(20);
+  });
+
+  //Enhancement Fails test
+  it("fails on enhancement", () => {
+    let newItem = enhancer.fail(test_items[0]);
+    expect(newItem.enhancement).toBe(0);
+    expect(newItem.durability).toBe(5);
+    newItem = enhancer.fail(test_items[1]);
+    expect(newItem.enhancement).toBe(10);
+    expect(newItem.durability).toBe(20);
+    newItem = enhancer.fail(test_items[2]);
+    expect(newItem.enhancement).toBe(15);
+    expect(newItem.durability).toBe(65);
+    newItem = enhancer.fail(test_items[3]);
+    expect(newItem.enhancement).toBe(16);
+    expect(newItem.durability).toBe(70);
+    newItem = enhancer.fail(test_items[4]);
+    expect(newItem.enhancement).toBe(19);
+    expect(newItem.durability).toBe(90);
   });
 });
